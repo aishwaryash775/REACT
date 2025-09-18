@@ -1,37 +1,37 @@
 import { useState } from 'react'
+
 import './App.css'
 
 function App() {
-  const [color1, setColor1] = useState("#ff0000")  // default red
-  const [color2, setColor2] = useState("#0000ff")  // default blue
+  const [showDashboard, setShowDashboard] = useState(false);
+  const [dark, setDark] = useState(false);
 
   return (
-    <div 
-      style={{ 
-        backgroundImage: `linear-gradient(90deg, ${color1}, ${color2})`,
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
+    <body
+      style={{
+        backgroundColor: dark ? "black" : "white",
+        color: dark ? "white" : "black",
+        padding: "20px",
+        textAlign: "center",
+      
       }}
     >
-      <div>
-        <input 
-          type="color" 
-          value={color1} 
-          onChange={(val)=>setColor1(val.target.value)} 
-        />
-        <input 
-          type="color" 
-          value={color2} 
-          onChange={(val)=>setColor2(val.target.value)} 
-        />
-      </div>
+      {!showDashboard ? (
+       <button onClick={() => setShowDashboard(true)}>
+          Open Dashboard
+        </button>
+      ) : (
+        <div>
+          <h1 >My Dashboard</h1>
+          <button onClick={() => setDark(!dark)}>
+            {dark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          </button>
 
-      <h1>{color1} | {color2}</h1>
-    </div>
-  )
+        </div>
+      )}
+    </body>
+  
+  );
 }
 
-export default App
+export default App;
